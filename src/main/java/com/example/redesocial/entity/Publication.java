@@ -1,9 +1,12 @@
-package com.example.redesocial.model.entity;
+package com.example.redesocial.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -12,7 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Adderess {
+public class Publication {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,19 +25,22 @@ public class Adderess {
     @Column(name = "uuid", nullable = false)
     private String uuid;
 
-    @Column(name = "public_place", nullable = false)
-    private String publicPlace;
+    @Column(name = "sharing")
+    private Long sharing;
 
-    @Column(name = "city", nullable = false)
-    private String city;
+    @Column(name = "created_on", nullable = false)
+    private LocalDateTime createdOn;
 
-    @Column(name = "postal_code", nullable = false)
-    private String postalCode;
-
-    @Column(name = "district", nullable = false)
-    private String district;
+    @Column(name = "updated_on")
+    private LocalDateTime updatedOn;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @OneToMany(mappedBy = "publication")
+    private List<Comment> comments;
+
+    @OneToOne
+    private Publication publication;
 }

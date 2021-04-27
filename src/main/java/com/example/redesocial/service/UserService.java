@@ -2,8 +2,8 @@ package com.example.redesocial.service;
 
 import com.example.redesocial.dto.ContactDto;
 import com.example.redesocial.dto.UserDto;
-import com.example.redesocial.model.entity.Contact;
-import com.example.redesocial.model.entity.User;
+import com.example.redesocial.entity.Contact;
+import com.example.redesocial.entity.User;
 import com.example.redesocial.repository.ContactRepository;
 import com.example.redesocial.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

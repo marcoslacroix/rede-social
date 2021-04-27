@@ -1,9 +1,9 @@
-package com.example.redesocial.model.entity;
+package com.example.redesocial.entity;
 
 import lombok.*;
-import org.apache.tomcat.jni.Address;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.*;
@@ -39,6 +39,12 @@ public class User {
     @Column(name = "birthdate", nullable = false)
     private LocalDate birthdate;
 
+    @Column(name = "created_on", nullable = false)
+    private LocalDateTime createdOn;
+
+    @Column(name = "updated_on")
+    private LocalDateTime updatedOn;
+
     @OneToMany(mappedBy = "user")
     private List<Contact> contacts;
 
@@ -47,4 +53,7 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Adderess> addresses;
+
+    @OneToMany(mappedBy = "user")
+    private List<Publication> publications;
 }

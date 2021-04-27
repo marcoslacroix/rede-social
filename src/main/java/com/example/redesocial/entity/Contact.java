@@ -1,4 +1,4 @@
-package com.example.redesocial.model.entity;
+package com.example.redesocial.entity;
 
 import lombok.*;
 
