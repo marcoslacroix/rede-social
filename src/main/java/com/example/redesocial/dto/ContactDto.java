@@ -1,25 +1,24 @@
 package com.example.redesocial.dto;
 
 import lombok.*;
+import lombok.extern.jackson.Jacksonized;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@Value
 @Getter
-@Setter
-@Builder
+@Jacksonized
 public class ContactDto {
 
-    private Long id;
+    Long id;
 
-    private String uuid;
+    String uuid;
 
-    private Integer dddCell;
+    Integer dddCell;
 
-    private Long homePhone;
+    Long homePhone;
 
-    private Long cellPhone;
+    Long cellPhone;
 
-    private Integer dddHome;
+    Integer dddHome;
 
-    private String email;
+    String email;
 }
