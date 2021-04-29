@@ -40,7 +40,4 @@ public class Publication {
 
     @OneToMany(mappedBy = "publication")
     private List<Comment> comments;
-
-    @OneToOne
-    private Publication publication;
 }

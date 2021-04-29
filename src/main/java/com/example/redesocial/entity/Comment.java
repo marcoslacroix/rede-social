@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -29,6 +30,16 @@ public class Comment {
     @JoinColumn(name = "publication_id", nullable = false)
     private Publication publication;
 
+    @ManyToOne
+    @JoinColumn(name = "comment_id")
+    private Comment comment;
+
     // todo relacionamento com comment one to one
+    @OneToMany(mappedBy = "comment")
+    private List<Comment> comments;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
 }

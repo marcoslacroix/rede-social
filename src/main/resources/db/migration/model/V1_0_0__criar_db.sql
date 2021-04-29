@@ -6,13 +6,15 @@ CREATE TABLE IF NOT EXISTS `redesocialdb`.`user` (
   `password` VARCHAR(150) NOT NULL,
   `uuid` VARCHAR(50) NOT NULL,
   `birthdate` DATE NOT NULL,
+  `created_on` DATETIME NOT NULL,
+  `updated_on` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `redesocialdb`.`contact` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `uuid` VARCHAR(50) NOT NULL,
-  `ddd_phone` INT NULL DEFAULT NULL,
+  `ddd_cell` INT NULL DEFAULT NULL,
   `home_phone` INT NULL DEFAULT NULL,
   `cell_phone` INT NULL DEFAULT NULL,
   `ddd_home` INT NULL DEFAULT NULL,
@@ -50,7 +52,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `redesocialdb`.`address` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `uuid` VARCHAR(50) NOT NULL,
-  `address` VARCHAR(150) NOT NULL,
+  `public_place` VARCHAR(150) NOT NULL,
   `city` VARCHAR(45) NOT NULL,
   `postal_code` VARCHAR(150) NOT NULL,
   `district` VARCHAR(150) NOT NULL,
@@ -87,6 +89,8 @@ CREATE TABLE IF NOT EXISTS `redesocialdb`.`publication` (
   `uuid` VARCHAR(50) NOT NULL,
   `sharing` INT NULL DEFAULT NULL,
   `user_id` INT NOT NULL,
+  `created_on` DATE NOT NULL,
+  `updated_on` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_publication_user1_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_publication_user1`
@@ -101,10 +105,14 @@ CREATE TABLE IF NOT EXISTS `redesocialdb`.`comment` (
   `uuid` VARCHAR(50) NOT NULL,
   `message` LONGTEXT NOT NULL,
   `publication_id` INT NOT NULL,
-  `comment_id` INT NOT NULL,
+  `comment_id` INT NULL,
+  `created_on` DATETIME NOT NULL,
+  `updated_on` DATETIME NULL DEFAULT NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_comment_publication1_idx` (`publication_id` ASC) VISIBLE,
   INDEX `fk_comment_comment1_idx` (`comment_id` ASC) VISIBLE,
+  INDEX `fk_comment_user1_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_comment_publication1`
     FOREIGN KEY (`publication_id`)
     REFERENCES `redesocialdb`.`publication` (`id`)
@@ -113,6 +121,11 @@ CREATE TABLE IF NOT EXISTS `redesocialdb`.`comment` (
   CONSTRAINT `fk_comment_comment1`
     FOREIGN KEY (`comment_id`)
     REFERENCES `redesocialdb`.`comment` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_comment_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `redesocialdb`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -141,3 +154,20 @@ CREATE TABLE IF NOT EXISTS `redesocialdb`.`like` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `redesocialdb`.`file` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `uuid` BINARY(16) NOT NULL,
+  `publication_id` INT NOT NULL,
+  `name` VARCHAR(150) NULL DEFAULT NULL,
+  `meta_data` JSON NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_file_publication1_idx` (`publication_id` ASC) VISIBLE,
+  CONSTRAINT `fk_file_publication1`
+    FOREIGN KEY (`publication_id`)
+    REFERENCES `redesocialdb`.`publication` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+

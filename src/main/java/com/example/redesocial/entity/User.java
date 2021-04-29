@@ -56,4 +56,11 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Publication> publications;
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "user")
+    private List<Collage> collages;
+
 }

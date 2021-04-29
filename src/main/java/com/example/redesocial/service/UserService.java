@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -33,6 +34,7 @@ public class UserService {
                 .email("marcoslacroix@gmail.com")
                 .uuid(String.valueOf(UUID.randomUUID()))
                 .birthdate(LocalDate.now())
+                .createdOn(LocalDateTime.now())
                 .build();
 
         // create contact
@@ -67,6 +69,7 @@ public class UserService {
                 .email(u.getEmail())
                 .uuid(u.getUuid())
                 .birthdate(u.getBirthdate())
+                .createdOn(u.getCreatedOn())
                 .build();
 
         // cria lista de contato do userdto
