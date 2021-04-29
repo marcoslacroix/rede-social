@@ -1,35 +1,35 @@
 package com.example.redesocial.dto;
 
 import lombok.*;
+import lombok.extern.jackson.Jacksonized;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@Value
 @Getter
-@Setter
-@Builder
+@RequiredArgsConstructor
+@Jacksonized
 public class UserDto {
 
-    private Long id;
+    Long id;
 
-    private String name;
+    String name;
 
-    private String lastName;
+    String lastName;
 
-    private String email;
+    String email;
 
-    private String password;
+    String password;
 
-    private String uuid;
+    String uuid;
 
-    private LocalDate birthdate;
+    LocalDate birthdate;
 
-    private LocalDateTime createdOn;
+    LocalDateTime createdOn;
 
-    private LocalDateTime updatedOn;
+    LocalDateTime updatedOn;
 
-    private List<ContactDto> contacts;
+    List<ContactDto> contacts;
 }

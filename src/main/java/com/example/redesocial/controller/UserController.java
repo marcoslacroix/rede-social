@@ -4,7 +4,6 @@ import com.example.redesocial.dto.UserDto;
 
 import com.example.redesocial.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +17,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping(path = "/add")
-    public ResponseEntity<UserDto> add() {
-        return ResponseEntity.ok(userService.add());
+    public ResponseEntity<?> add(UserDto userDto) {
+        return (ResponseEntity<?>) ResponseEntity.ok();
     }
 }
