@@ -1,3 +1,3 @@
 # rede-social
 
-Tecnologias usadas: Map struct, Swagger, flyway, Lombok
+Tecnologias usadas: Map struct, Swagger, flyway, Lombok, BCryptPasswordEncoder
