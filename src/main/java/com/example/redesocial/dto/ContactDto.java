@@ -1,6 +1,7 @@
 package com.example.redesocial.dto;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
 @Value
