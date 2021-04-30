@@ -27,9 +27,9 @@ public class UserController {
     @PostMapping
     @ApiOperation(value = "Cria um usuário", response = UserDto.class)
     public ResponseEntity<?> create(@RequestBody UserCreateDto userCreateDto) {
-        User user2 = userRepository.findByEmail(userCreateDto.getEmail());
-        if (nonNull(user2)) {
-            return new ResponseEntity<>("User with " + user2.getEmail() + " is already exist", HttpStatus.BAD_REQUEST);
+        User user = userRepository.findByEmail(userCreateDto.getEmail());
+        if (nonNull(user)) {
+            return new ResponseEntity<>("User with " + user.getEmail() + " is already exist", HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok(userService.create(userCreateDto));
     }
