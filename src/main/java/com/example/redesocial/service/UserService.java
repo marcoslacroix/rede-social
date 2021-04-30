@@ -1,5 +1,7 @@
 package com.example.redesocial.service;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+import at.favre.lib.crypto.bcrypt.BCryptParser;
 import com.example.redesocial.dto.user.UserCreateDto;
 import com.example.redesocial.dto.user.UserDto;
 import com.example.redesocial.entity.User;
@@ -8,6 +10,8 @@ import com.example.redesocial.mapper.user.UserMapper;
 import com.example.redesocial.repository.ContactRepository;
 import com.example.redesocial.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,10 +27,18 @@ public class UserService {
     @Transactional
     public UserDto create(UserCreateDto userCreateDto) {
 
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         User user = userCreateMapper.toUser(userCreateDto);
+        user.setPassword(passwordEncoder.encode(userCreateDto.getPassword()));
         userRepository.save(user);
-
         return userMapper.toDto(user);
 
     }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+
 }
