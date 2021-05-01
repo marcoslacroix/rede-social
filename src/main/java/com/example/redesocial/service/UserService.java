@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import static java.util.Objects.nonNull;
 
@@ -24,16 +25,16 @@ public class UserService {
     private final UserMapper userMapper;
 
     @Transactional
-    public ResponseEntity<?> create(UserCreateDto userCreateDto) {
+    public UserDto create(UserCreateDto userCreateDto) {
 
-        User user2 = userRepository.findByEmail(userCreateDto.getEmail());
-        if (nonNull(user2)) {
-            return ResponseEntity.badRequest().body("Usuário já cadastrado");
+        User searchUser = userRepository.findByEmail(userCreateDto.getEmail());
+        if (nonNull(searchUser)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email já cadastrado " + searchUser.getEmail());
         }
 
         User user = userCreateMapper.toUser(userCreateDto);
         user.setPassword(PasswordEncoder.passwordEncoder().encode(userCreateDto.getPassword()));
         userRepository.save(user);
-        return ResponseEntity.ok(userMapper.toDto(user));
+        return userMapper.toDto(user);
     }
 }
