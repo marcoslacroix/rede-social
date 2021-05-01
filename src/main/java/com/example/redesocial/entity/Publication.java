@@ -39,4 +39,7 @@ public class Publication {
 
     @OneToMany(mappedBy = "publication")
     private List<Comment> comments;
+
+    @OneToMany(mappedBy = "publication")
+    private List<Like> likes;
 }

@@ -62,4 +62,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Collage> collages;
 
+    @OneToMany(mappedBy = "user")
+    private List<Like> likes;
+
 }
