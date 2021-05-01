@@ -24,15 +24,14 @@ public class UserService {
     private final UserCreateMapper userCreateMapper;
     private final UserMapper userMapper;
 
-    @Transactional
     public UserDto create(UserCreateDto userCreateDto) {
 
-        User searchUser = userRepository.findByEmail(userCreateDto.getEmail());
-        if (nonNull(searchUser)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email já cadastrado " + searchUser.getEmail());
+        User user = userRepository.findByEmail(userCreateDto.getEmail());
+        if (nonNull(user)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email já cadastrado " + user.getEmail());
         }
 
-        User user = userCreateMapper.toUser(userCreateDto);
+        user = userCreateMapper.toUser(userCreateDto);
         user.setPassword(PasswordEncoder.passwordEncoder().encode(userCreateDto.getPassword()));
         userRepository.save(user);
         return userMapper.toDto(user);
