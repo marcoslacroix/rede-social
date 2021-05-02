@@ -26,3 +26,6 @@ ALTER TABLE `redesocialdb`.`like`
 ADD CONSTRAINT `fk_like_publication2`
   FOREIGN KEY (`publication_id`)
   REFERENCES `redesocialdb`.`publication` (`id`);
+
+ALTER TABLE `redesocialdb`.`user`
+ADD COLUMN `activated` BIT(1) NULL DEFAULT b'1' AFTER `updated_on`;

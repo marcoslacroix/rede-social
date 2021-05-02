@@ -19,7 +19,6 @@ import static java.util.Objects.nonNull;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final UserCreateMapper userCreateMapper;
     private final UserMapper userMapper;
 
     public UserDto create(UserCreateDto userCreateDto) {
@@ -30,7 +29,7 @@ public class UserService {
                     String.format("Email %s já cadastrado ", user.getEmail()));
         }
 
-        user = userCreateMapper.toUser(userCreateDto);
+        user = UserCreateMapper.INSTANCE.toUser(userCreateDto);
         user.setPassword(PasswordEncoder.passwordEncoder().encode(userCreateDto.getPassword()));
         userRepository.save(user);
         return userMapper.toDto(user);

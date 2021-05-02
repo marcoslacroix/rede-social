@@ -7,12 +7,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -43,6 +42,10 @@ public class User {
 
     @Column(name = "updated_on")
     private LocalDateTime updatedOn;
+
+    @Column(name = "activated")
+    @Builder.Default
+    private Boolean activated = true;
 
     @OneToMany(mappedBy = "user")
     private List<Contact> contacts;
