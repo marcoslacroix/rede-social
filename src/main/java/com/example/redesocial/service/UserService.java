@@ -1,8 +1,8 @@
 package com.example.redesocial.service;
 
 import com.example.redesocial.config.PasswordEncoder;
-import com.example.redesocial.dto.user.create.UserCreateDto;
 import com.example.redesocial.dto.user.UserDto;
+import com.example.redesocial.dto.user.create.UserCreateDto;
 import com.example.redesocial.entity.User;
 import com.example.redesocial.mapper.user.UserCreateMapper;
 import com.example.redesocial.mapper.user.UserMapper;
@@ -57,8 +57,8 @@ public class UserService {
     public void changePassword(String newPassword, String newPassword2, String oldPassword, String uuid) {
         User user = findByUuid(uuid);
         if (newPassword.equals(newPassword2)) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                        "The new password do not match");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "The new password do not match");
         } else if (PasswordEncoder.passwordEncoder().matches(oldPassword, user.getPassword())) {
             user.setPassword(PasswordEncoder.passwordEncoder().encode(newPassword));
             user.setUpdatedOn(LocalDateTime.now());

@@ -1,16 +1,19 @@
 package com.example.redesocial.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Data
 @Entity
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
-@Getter
-@Setter
+@AllArgsConstructor
 public class Publication {
 
     @Id
@@ -26,7 +29,7 @@ public class Publication {
 
     @Column(name = "exlcuded", nullable = false)
     @Builder.Default
-    private boolean excluded;
+    private Boolean excluded = false;
 
     @Column(name = "created_on", nullable = false)
     private LocalDateTime createdOn;

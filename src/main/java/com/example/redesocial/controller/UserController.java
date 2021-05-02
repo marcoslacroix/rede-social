@@ -1,7 +1,7 @@
 package com.example.redesocial.controller;
 
-import com.example.redesocial.dto.user.create.UserCreateDto;
 import com.example.redesocial.dto.user.UserDto;
+import com.example.redesocial.dto.user.create.UserCreateDto;
 import com.example.redesocial.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -33,9 +33,9 @@ public class UserController {
     @PostMapping("/updatePassword")
     @ApiOperation(value = "Change password")
     public ResponseEntity<?> changePassword(@RequestParam @NotBlank String newPassword,
-                                 @RequestParam @NotBlank String newPassword2,
-                                 @RequestParam @NotBlank String oldPassword,
-                                 @RequestParam @NotBlank String uuid) {
+                                            @RequestParam @NotBlank String newPassword2,
+                                            @RequestParam @NotBlank String oldPassword,
+                                            @RequestParam @NotBlank String uuid) {
         userService.changePassword(newPassword, newPassword2, oldPassword, uuid);
         return ResponseEntity.ok("Password Updated sucessfully");
     }
