@@ -34,8 +34,6 @@ public class UserDto {
 //
 //    private LocalDateTime updatedOn;
 //
-//    private List<Contact> contacts;
-//
 //    private List<Work> works;
 //
 //    private List<Adderess> addresses;
