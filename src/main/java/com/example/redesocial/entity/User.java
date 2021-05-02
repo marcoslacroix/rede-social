@@ -65,4 +65,13 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Like> likes;
 
+    @OneToMany(mappedBy = "user")
+    private List<Email> emails;
+
+    @OneToMany(mappedBy = "user")
+    private List<Phone> phones;
+
+    @OneToMany(mappedBy = "user")
+    private List<HomePhone> homePhones;
+
 }
