@@ -24,7 +24,7 @@ public class UserUpdateDto {
     String lastName;
 
     @ApiModelProperty(name = "Email", example = "marcoslacroix@gmail.com", required = true)
-    String email;
+    String emailPrincipal;
 
     @ApiModelProperty(name = "Password", example = "2939239293", required = true)
     String password;
