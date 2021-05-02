@@ -18,19 +18,20 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    @ApiOperation(value = "Criar um usuário", response = UserDto.class)
+    @ApiOperation(value = "Create user", response = UserDto.class)
     public ResponseEntity<UserDto> create(@RequestBody UserCreateDto userCreateDto) {
         return ResponseEntity.ok(userService.create(userCreateDto));
     }
 
     @PostMapping("/inactive")
-    @ApiOperation(value = "Inativar o usuário")
+    @ApiOperation(value = "Inactivate user")
     public ResponseEntity<?> inactive(@RequestParam @NotBlank String uuid) {
         userService.inactive(uuid);
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/updatePassword")
+    @ApiOperation(value = "Change password")
     public ResponseEntity<?> changePassword(@RequestParam @NotBlank String newPassword,
                                  @RequestParam @NotBlank String newPassword2,
                                  @RequestParam @NotBlank String oldPassword,
@@ -40,6 +41,7 @@ public class UserController {
     }
 
     @PostMapping("/updateEmail")
+    @ApiOperation(value = "Change email")
     public ResponseEntity<?> changeEmail(@RequestParam @NotBlank String newEmail,
                                          @RequestParam @NotBlank String uuid) {
         userService.changeEmailPrincipal(newEmail, uuid);

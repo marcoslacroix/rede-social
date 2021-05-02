@@ -21,7 +21,7 @@ public class UserDto {
 
     String lastName;
 
-    String email;
+    String emailPrincipal;
 
     String password;
 

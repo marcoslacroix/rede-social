@@ -26,16 +26,13 @@ public class UserService {
 
     @Transactional(rollbackFor = Exception.class)
     public UserDto create(UserCreateDto userCreateDto) {
-
         User user = userRepository.findByEmailPrincipal(userCreateDto.getEmailPrincipal());
         if (nonNull(user)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    String.format("Email %s já cadastrado ", user.getEmailPrincipal()));
+                    String.format("Email %s already registered ", user.getEmailPrincipal()));
         }
-
         user = UserCreateMapper.INSTANCE.toUser(userCreateDto);
         user.setPassword(PasswordEncoder.passwordEncoder().encode(userCreateDto.getPassword()));
-
         return UserMapper.INSTANCE.toDto(userRepository.save(user));
     }
 
@@ -51,7 +48,7 @@ public class UserService {
         User user = userRepository.findByUuid(uuid);
         if (isNull(user)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    String.format("UUID %s não encontrado", uuid));
+                    String.format("UUID %s not found ", uuid));
         }
         return user;
     }
@@ -62,7 +59,7 @@ public class UserService {
         if (newPassword.equals(newPassword2)) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                         "The new password do not match");
-        }else if (PasswordEncoder.passwordEncoder().matches(oldPassword, user.getPassword())) {
+        } else if (PasswordEncoder.passwordEncoder().matches(oldPassword, user.getPassword())) {
             user.setPassword(PasswordEncoder.passwordEncoder().encode(newPassword));
             user.setUpdatedOn(LocalDateTime.now());
         } else {
@@ -76,7 +73,6 @@ public class UserService {
     public void changeEmailPrincipal(String newEmail, String uuid) {
         User user = findByUuid(uuid);
         User searchNewEmail = userRepository.findByEmailPrincipal(newEmail);
-
         if (nonNull(searchNewEmail)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     String.format("Email %s already registered ", searchNewEmail.getEmailPrincipal()));
