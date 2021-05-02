@@ -1,9 +1,6 @@
 package com.example.redesocial.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -26,6 +23,10 @@ public class Publication {
 
     @Column(name = "sharing")
     private Long sharing;
+
+    @Column(name = "exlcuded", nullable = false)
+    @Builder.Default
+    private boolean excluded;
 
     @Column(name = "created_on", nullable = false)
     private LocalDateTime createdOn;

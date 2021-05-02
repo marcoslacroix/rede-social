@@ -1,9 +1,6 @@
 package com.example.redesocial.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,6 +22,10 @@ public class Comment {
 
     @Column(name = "message", nullable = false)
     private String message;
+
+    @Column(name = "exlcuded", nullable = false)
+    @Builder.Default
+    private boolean excluded;
 
     @ManyToOne
     @JoinColumn(name = "publication_id", nullable = false)

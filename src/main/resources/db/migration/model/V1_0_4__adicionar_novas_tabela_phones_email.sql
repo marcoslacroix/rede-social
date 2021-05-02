@@ -31,3 +31,9 @@ CREATE TABLE IF NOT EXISTS `redesocialdb`.`phone` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+ALTER TABLE `redesocialdb`.`publication`
+ADD COLUMN `excluded` BIT(1) NOT NULL DEFAULT b'0' AFTER `updated_on`;
+
+ALTER TABLE `redesocialdb`.`comment`
+ADD COLUMN `excluded` BIT(1) NOT NULL DEFAULT b'0' AFTER `user_id`;
