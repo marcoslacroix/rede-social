@@ -153,3 +153,4 @@ CREATE TABLE IF NOT EXISTS `redesocialdb`.`file` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
