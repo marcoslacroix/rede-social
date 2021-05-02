@@ -29,3 +29,6 @@ ADD CONSTRAINT `fk_like_publication2`
 
 ALTER TABLE `redesocialdb`.`user`
 ADD COLUMN `activated` BIT(1) NULL DEFAULT b'1' AFTER `updated_on`;
+
+ALTER TABLE `redesocialdb`.`user`
+CHANGE COLUMN `email` `email_principal` VARCHAR(150) NOT NULL ;

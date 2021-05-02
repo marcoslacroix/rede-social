@@ -4,5 +4,7 @@ import com.example.redesocial.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findByEmail(String email);
+    User findByEmailPrincipal(String email);
+
+    User findByUuid(String uuid);
 }
