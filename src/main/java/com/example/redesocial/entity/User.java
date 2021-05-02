@@ -71,7 +71,4 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Phone> phones;
 
-    @OneToMany(mappedBy = "user")
-    private List<HomePhone> homePhones;
-
 }

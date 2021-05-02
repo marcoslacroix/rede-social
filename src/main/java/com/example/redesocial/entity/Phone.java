@@ -19,17 +19,26 @@ public class Phone {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "uuid", nullable = false)
+    @Column(name = "uuid")
     private String uuid;
 
-    @Column(name = "ddd", nullable = false)
+    @Column(name = "ddd")
     private Integer ddd;
 
-    @Column(name = "phone", nullable = false)
+    @Column(name = "phone")
     private Long phone;
 
-    @Column(name = "ddi")
-    private Integer ddi;
+    @Column(name = "ddi_phone")
+    private Integer ddiPhone;
+
+    @Column(name = "ddd_home_phone")
+    private Integer dddHomePhone;
+
+    @Column(name = "home_phone")
+    private Long homePhone;
+
+    @Column(name = "ddi_home_phone")
+    private Integer ddiHomePhone;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
