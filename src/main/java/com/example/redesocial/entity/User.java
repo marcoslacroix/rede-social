@@ -7,12 +7,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -26,8 +25,8 @@ public class User {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "email", nullable = false)
-    private String email;
+    @Column(name = "email_principal", nullable = false)
+    private String emailPrincipal;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -43,6 +42,10 @@ public class User {
 
     @Column(name = "updated_on")
     private LocalDateTime updatedOn;
+
+    @Column(name = "activated")
+    @Builder.Default
+    private Boolean activated = true;
 
     @OneToMany(mappedBy = "user")
     private List<Contact> contacts;
@@ -61,5 +64,8 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Collage> collages;
+
+    @OneToMany(mappedBy = "user")
+    private List<Like> likes;
 
 }

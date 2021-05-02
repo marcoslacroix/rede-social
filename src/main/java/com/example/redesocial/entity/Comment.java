@@ -42,4 +42,7 @@ public class Comment {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @OneToOne(mappedBy = "comment")
+    private Like like;
+
 }
