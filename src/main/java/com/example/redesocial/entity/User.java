@@ -48,9 +48,6 @@ public class User {
     private Boolean activated = true;
 
     @OneToMany(mappedBy = "user")
-    private List<Contact> contacts;
-
-    @OneToMany(mappedBy = "user")
     private List<Work> works;
 
     @OneToMany(mappedBy = "user")
