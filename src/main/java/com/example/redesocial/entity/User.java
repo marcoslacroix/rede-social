@@ -1,6 +1,9 @@
 package com.example.redesocial.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -70,8 +73,5 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Phone> phones;
-
-    @OneToMany(mappedBy = "user")
-    private List<HomePhone> homePhones;
 
 }

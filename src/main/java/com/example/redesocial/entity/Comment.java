@@ -1,18 +1,18 @@
 package com.example.redesocial.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 public class Comment {
 
     @Id
@@ -25,6 +25,10 @@ public class Comment {
 
     @Column(name = "message", nullable = false)
     private String message;
+
+    @Column(name = "exlcuded", nullable = false)
+    @Builder.Default
+    private Boolean excluded = false;
 
     @ManyToOne
     @JoinColumn(name = "publication_id", nullable = false)

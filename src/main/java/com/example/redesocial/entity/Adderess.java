@@ -1,17 +1,17 @@
 package com.example.redesocial.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
+@Data
 @Entity
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
-@Getter
-@Setter
+@AllArgsConstructor
 public class Adderess {
 
     @Id
