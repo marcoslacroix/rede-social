@@ -34,16 +34,25 @@ public class Like {
     @Column(name = "anger")
     private Long anger;
 
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
+    @Column(name = "publication_id")
+    private Long publicationId;
+
+    @Column(name = "comment_id")
+    private Long commentId;
+
     @ManyToOne
-    @JoinColumn(name = "publication_id", nullable = false)
+    @JoinColumn(name = "publication_id", insertable = false, updatable = false)
     private Publication publication;
 
     @OneToOne
-    @JoinColumn(name = "comment_id")
+    @JoinColumn(name = "comment_id", insertable = false, updatable = false)
     private Comment comment;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
 }

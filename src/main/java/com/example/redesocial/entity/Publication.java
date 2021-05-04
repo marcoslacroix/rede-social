@@ -37,8 +37,11 @@ public class Publication {
     @Column(name = "updated_on")
     private LocalDateTime updatedOn;
 
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
     @OneToMany(mappedBy = "publication")

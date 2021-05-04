@@ -4,6 +4,7 @@ import com.example.redesocial.config.PasswordEncoder;
 import com.example.redesocial.dto.user.UserDto;
 import com.example.redesocial.dto.user.create.UserCreateDto;
 import com.example.redesocial.entity.User;
+import com.example.redesocial.exception.EmailAlreadyFound;
 import com.example.redesocial.mapper.user.UserCreateMapper;
 import com.example.redesocial.mapper.user.UserMapper;
 import com.example.redesocial.repository.UserRepository;
@@ -28,8 +29,7 @@ public class UserService {
     public UserDto create(UserCreateDto userCreateDto) {
         User user = userRepository.findByEmailPrincipal(userCreateDto.getEmailPrincipal());
         if (nonNull(user)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    String.format("Email %s already registered ", user.getEmailPrincipal()));
+            throw new EmailAlreadyFound(user.getEmailPrincipal());
         }
         user = UserCreateMapper.INSTANCE.toUser(userCreateDto);
         user.setPassword(PasswordEncoder.passwordEncoder().encode(userCreateDto.getPassword()));

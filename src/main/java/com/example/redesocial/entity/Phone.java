@@ -40,7 +40,10 @@ public class Phone {
     @Column(name = "ddi_home_phone")
     private Integer ddiHomePhone;
 
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 }
