@@ -1,7 +1,5 @@
 package com.example.redesocial.dto.email;
 
-import com.example.redesocial.dto.user.UserDto;
-import com.example.redesocial.entity.User;
 import lombok.*;
 import lombok.extern.jackson.Jacksonized;
 
@@ -21,5 +19,5 @@ public class EmailDto {
 
     boolean excluido;
 
-    UserDto user;
+    Long userId;
 }

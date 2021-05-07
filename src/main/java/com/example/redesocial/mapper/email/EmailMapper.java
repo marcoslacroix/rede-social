@@ -10,4 +10,6 @@ public interface EmailMapper {
 
     EmailMapper INSTANCE = Mappers.getMapper(EmailMapper.class);
 
-    EmailDto toDto(Email email);}
+    EmailDto toDto(Email email);
+
+}

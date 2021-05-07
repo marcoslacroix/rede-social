@@ -1,7 +1,6 @@
 package com.example.redesocial.service;
 
 import com.example.redesocial.dto.email.EmailDto;
-import com.example.redesocial.dto.email.create.EmailCreateDto;
 import com.example.redesocial.entity.Email;
 import com.example.redesocial.entity.User;
 import com.example.redesocial.exception.EmailAlreadyFound;
@@ -13,8 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.UUID;
-
 import static java.util.Objects.nonNull;
 
 @Service
@@ -25,17 +22,23 @@ public class EmailService {
     private final UserRepository userRepository;
 
     @Transactional
-    public EmailDto create(EmailCreateDto emailCreateDto) {
+    public EmailDto create(Long userId, String email) {
 
-        User userSearch = userRepository.findByEmailPrincipal(emailCreateDto.getEmail());
-        Email emailSearch = emailRepository.findByEmail(emailCreateDto.getEmail());
+        User userSearch = userRepository.findByEmailPrincipal(email);
+        Email emailSearch = emailRepository.findByEmail(email);
         if (nonNull(userSearch) || nonNull(emailSearch)) {
-            throw new EmailAlreadyFound(emailCreateDto.getEmail());
+            throw new EmailAlreadyFound(email);
         }
 
-        Email email = EmailCreateMapper.INSTANCE.toEmail(emailCreateDto);
-        emailRepository.save(email);
+        Email newEmail = EmailCreateMapper.INSTANCE.toEmail(userId, email);
+        emailRepository.save(newEmail);
 
-        return EmailMapper.INSTANCE.toDto(email);
+
+        return EmailMapper.INSTANCE.toDto(newEmail);
+    }
+
+    @Transactional
+    public void delete(Long emailId) {
+        emailRepository.softDelete(emailId);
     }
 }

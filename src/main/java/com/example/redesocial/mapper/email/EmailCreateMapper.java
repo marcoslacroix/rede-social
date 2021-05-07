@@ -19,8 +19,7 @@ public interface EmailCreateMapper {
     EmailCreateDto toDto(Email email);
 
     @Mappings({
-            @Mapping(target = "uuid", expression = "java(UUID.randomUUID().toString())"),
-            @Mapping(target = "userId", source = "emailCreateDto.userId")
+            @Mapping(target = "uuid", expression = "java(UUID.randomUUID().toString())")
     })
-    Email toEmail(EmailCreateDto emailCreateDto);
+    Email toEmail(Long userId, String email);
 }
