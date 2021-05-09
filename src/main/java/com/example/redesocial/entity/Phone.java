@@ -23,24 +23,27 @@ public class Phone {
     private String uuid;
 
     @Column(name = "ddd")
-    private Integer ddd;
+    private String ddd;
 
     @Column(name = "phone")
-    private Long phone;
+    private String phone;
 
     @Column(name = "ddi_phone")
-    private Integer ddiPhone;
+    private String ddiPhone;
 
     @Column(name = "ddd_home_phone")
-    private Integer dddHomePhone;
+    private String dddHomePhone;
 
     @Column(name = "home_phone")
-    private Long homePhone;
+    private String homePhone;
 
     @Column(name = "ddi_home_phone")
-    private Integer ddiHomePhone;
+    private String ddiHomePhone;
+
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 }

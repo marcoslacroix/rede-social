@@ -38,7 +38,10 @@ public class Collage {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 }

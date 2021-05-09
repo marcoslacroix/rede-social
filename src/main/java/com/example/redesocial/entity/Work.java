@@ -36,7 +36,8 @@ public class Work {
     private String description;
 
     @Column(name = "active")
-    private Boolean active;
+    @Builder.Default
+    private Boolean active = true;
 
     @Column(name = "start")
     private LocalDate start;
@@ -44,7 +45,10 @@ public class Work {
     @Column(name = "end")
     private LocalDate end;
 
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 }

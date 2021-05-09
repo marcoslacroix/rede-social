@@ -30,12 +30,21 @@ public class Comment {
     @Builder.Default
     private Boolean excluded = false;
 
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
+    @Column(name = "publication_id", nullable = false)
+    private Long publicationId;
+
+    @Column(name = "comment_id")
+    private Long commentId;
+
     @ManyToOne
-    @JoinColumn(name = "publication_id", nullable = false)
+    @JoinColumn(name = "publication_id", insertable = false, updatable = false)
     private Publication publication;
 
     @ManyToOne
-    @JoinColumn(name = "comment_id")
+    @JoinColumn(name = "comment_id", insertable = false, updatable = false)
     private Comment comment;
 
     // todo relacionamento com comment one to one
@@ -43,7 +52,7 @@ public class Comment {
     private List<Comment> comments;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
     @OneToOne(mappedBy = "comment")

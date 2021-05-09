@@ -26,10 +26,14 @@ public class Email {
     private String email;
 
     @Builder.Default
-    private boolean excluido = true;
+    @Column(name = "excluido")
+    private boolean excluido = false;
+
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
 }
