@@ -33,7 +33,12 @@ public class Collage {
     private LocalDate end;
 
     @Column(name = "formed")
-    private boolean formed;
+    @Builder.Default
+    private boolean formed = false;
+
+    @Column(name = "excluded")
+    @Builder.Default
+    private boolean excluded = false;
 
     @Column(name = "description")
     private String description;

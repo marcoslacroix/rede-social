@@ -11,6 +11,6 @@ public interface EmailRepository extends JpaRepository<Email, Long> {
     Email findByEmail(String email);
 
     @Modifying
-    @Query("update Email e set e.excluido = true where e.id = :emailId")
+    @Query("update Email e set e.excluded = true where e.id = :emailId")
     void softDelete(@Param("emailId") Long emailId);
 }

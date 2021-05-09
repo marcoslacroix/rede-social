@@ -1,4 +1,4 @@
-package com.example.redesocial.dto.work.create;
+package com.example.redesocial.dto.work.update;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -13,7 +13,11 @@ import java.time.LocalDate;
 @Value
 @Getter
 @Jacksonized
-public class WorkCreateDto {
+public class WorkUpdateDto {
+
+
+    @ApiModelProperty(name = "Id of work", example = "4", required = true)
+    Long id;
 
     @ApiModelProperty(name = "Name of company you work", example = "TDSOFT", required = true)
     String company;
@@ -34,10 +38,8 @@ public class WorkCreateDto {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate start;
 
-    @ApiModelProperty(name = "Date you left the company")
+    @ApiModelProperty(hidden = true, name = "Date you left the company")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate end;
 
-    @ApiModelProperty(name = "Id of user", example = "5", required = true)
-    Long userId;
 }

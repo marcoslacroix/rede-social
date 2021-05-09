@@ -48,7 +48,11 @@ public class User {
 
     @Column(name = "activated")
     @Builder.Default
-    private Boolean activated = true;
+    private boolean activated = true;
+
+    @Column(name = "excluded")
+    @Builder.Default
+    private boolean excluded = false;
 
     @OneToMany(mappedBy = "user")
     private List<Work> works;

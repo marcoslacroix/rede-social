@@ -37,13 +37,17 @@ public class Work {
 
     @Column(name = "active")
     @Builder.Default
-    private Boolean active = true;
+    private boolean active = true;
 
     @Column(name = "start")
     private LocalDate start;
 
     @Column(name = "end")
     private LocalDate end;
+
+    @Column(name = "excluded")
+    @Builder.Default
+    private boolean excluded = false;
 
     @Column(name = "user_id", nullable = false)
     private Long userId;
