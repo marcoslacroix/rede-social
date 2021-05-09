@@ -3,6 +3,7 @@ package com.example.redesocial.dto.user.update;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.extern.jackson.Jacksonized;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -30,5 +31,6 @@ public class UserUpdateDto {
     String password;
 
     @ApiModelProperty(name = "Data de nascimento", example = "1993-03-19", required = true)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate birthdate;
 }

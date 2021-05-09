@@ -37,25 +37,25 @@ public class UserService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void inactive(String uuid) {
-        User user = findByUuid(uuid);
+    public void inactive(Long id) {
+        User user = findById(id);
         user.setActivated(false);
         user.setUpdatedOn(LocalDateTime.now());
         userRepository.save(user);
     }
 
-    private User findByUuid(String uuid) {
-        User user = userRepository.findByUuid(uuid);
+    private User findById(Long id) {
+        User user = userRepository.findById(id).orElse(null);
         if (isNull(user)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    String.format("UUID %s not found ", uuid));
+                    String.format("UUID %s not found ", id));
         }
         return user;
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void changePassword(String newPassword, String newPassword2, String oldPassword, String uuid) {
-        User user = findByUuid(uuid);
+    public void changePassword(String newPassword, String newPassword2, String oldPassword, Long id) {
+        User user = findById(id);
         if (newPassword.equals(newPassword2)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "The new password do not match");
@@ -70,8 +70,8 @@ public class UserService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void changeEmailPrincipal(String newEmail, String uuid) {
-        User user = findByUuid(uuid);
+    public void changeEmailPrincipal(String newEmail, Long id) {
+        User user = findById(id);
         User searchNewEmail = userRepository.findByEmailPrincipal(newEmail);
         if (nonNull(searchNewEmail)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,

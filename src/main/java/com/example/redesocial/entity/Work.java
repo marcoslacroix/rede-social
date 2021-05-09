@@ -36,7 +36,8 @@ public class Work {
     private String description;
 
     @Column(name = "active")
-    private Boolean active;
+    @Builder.Default
+    private Boolean active = true;
 
     @Column(name = "start")
     private LocalDate start;
