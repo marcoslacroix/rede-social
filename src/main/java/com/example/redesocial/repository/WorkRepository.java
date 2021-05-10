@@ -1,6 +1,6 @@
 package com.example.redesocial.repository;
 
-import com.example.redesocial.entity.Work;
+import com.example.redesocial.model.Work;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

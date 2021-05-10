@@ -1,7 +1,7 @@
 package com.example.redesocial.mapper.work;
 
 import com.example.redesocial.dto.work.create.WorkCreateDto;
-import com.example.redesocial.entity.Work;
+import com.example.redesocial.model.Work;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

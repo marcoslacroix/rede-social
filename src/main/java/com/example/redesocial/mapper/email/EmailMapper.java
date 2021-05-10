@@ -1,7 +1,7 @@
 package com.example.redesocial.mapper.email;
 
 import com.example.redesocial.dto.email.EmailDto;
-import com.example.redesocial.entity.Email;
+import com.example.redesocial.model.Email;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

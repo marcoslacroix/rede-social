@@ -3,18 +3,23 @@ package com.example.redesocial.service;
 import com.example.redesocial.config.PasswordEncoder;
 import com.example.redesocial.dto.user.UserDto;
 import com.example.redesocial.dto.user.create.UserCreateDto;
-import com.example.redesocial.entity.User;
+import com.example.redesocial.model.Photo;
+import com.example.redesocial.model.User;
 import com.example.redesocial.exception.EmailAlreadyFound;
 import com.example.redesocial.mapper.user.UserCreateMapper;
 import com.example.redesocial.mapper.user.UserMapper;
+import com.example.redesocial.repository.PhotoRepository;
 import com.example.redesocial.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
@@ -24,6 +29,7 @@ import static java.util.Objects.nonNull;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PhotoRepository photoRepository;
 
     @Transactional(rollbackFor = Exception.class)
     public UserDto create(UserCreateDto userCreateDto) {
@@ -80,5 +86,25 @@ public class UserService {
         user.setEmailPrincipal(newEmail);
         user.setUpdatedOn(LocalDateTime.now());
         userRepository.save(user);
+    }
+
+    @Transactional
+    public void uploadPhoto(Long userId, MultipartFile multipartFile) throws IOException {
+        if (!multipartFile.isEmpty()) {
+            Photo photo = new Photo();
+            photo.setUuid(UUID.randomUUID().toString());
+            photo.setImage(multipartFile.getBytes());
+            photo.setUserId(userId);
+            photoRepository.save(photo);
+        }
+    }
+
+    public byte[] getPhoto(Long userId) {
+        Photo photo = photoRepository.findByUserId(userId).orElse(null);
+        if (isNull(photo)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "Photo not found.");
+        }
+        return photo.getImage();
     }
 }

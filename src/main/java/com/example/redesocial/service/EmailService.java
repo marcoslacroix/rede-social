@@ -1,8 +1,8 @@
 package com.example.redesocial.service;
 
 import com.example.redesocial.dto.email.EmailDto;
-import com.example.redesocial.entity.Email;
-import com.example.redesocial.entity.User;
+import com.example.redesocial.model.Email;
+import com.example.redesocial.model.User;
 import com.example.redesocial.exception.EmailAlreadyFound;
 import com.example.redesocial.mapper.email.EmailCreateMapper;
 import com.example.redesocial.mapper.email.EmailMapper;

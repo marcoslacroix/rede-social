@@ -1,4 +1,4 @@
-package com.example.redesocial.entity;
+package com.example.redesocial.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,39 +6,44 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Phone {
+public class Work {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "uuid")
+    @Column(name = "uuid", nullable = false)
     private String uuid;
 
-    @Column(name = "ddd")
-    private String ddd;
+    @Column(name = "company", nullable = false)
+    private String company;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "role")
+    private String role;
 
-    @Column(name = "ddi_phone")
-    private String ddiPhone;
+    @Column(name = "city")
+    private String city;
 
-    @Column(name = "ddd_home_phone")
-    private String dddHomePhone;
+    @Column(name = "description")
+    private String description;
 
-    @Column(name = "home_phone")
-    private String homePhone;
+    @Column(name = "active")
+    @Builder.Default
+    private boolean active = true;
 
-    @Column(name = "ddi_home_phone")
-    private String ddiHomePhone;
+    @Column(name = "start")
+    private LocalDate start;
+
+    @Column(name = "end")
+    private LocalDate end;
 
     @Column(name = "excluded")
     @Builder.Default

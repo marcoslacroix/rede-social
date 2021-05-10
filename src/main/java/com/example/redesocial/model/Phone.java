@@ -1,4 +1,4 @@
-package com.example.redesocial.entity;
+package com.example.redesocial.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,26 +7,41 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
 @Data
+@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Email {
+public class Phone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "uuid")
     private String uuid;
 
-    @Column(name = "email", nullable = false)
-    private String email;
+    @Column(name = "ddd")
+    private String ddd;
 
-    @Builder.Default
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "ddi_phone")
+    private String ddiPhone;
+
+    @Column(name = "ddd_home_phone")
+    private String dddHomePhone;
+
+    @Column(name = "home_phone")
+    private String homePhone;
+
+    @Column(name = "ddi_home_phone")
+    private String ddiHomePhone;
+
     @Column(name = "excluded")
+    @Builder.Default
     private boolean excluded = false;
 
     @Column(name = "user_id", nullable = false)
@@ -35,5 +50,4 @@ public class Email {
     @ManyToOne
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
-
 }

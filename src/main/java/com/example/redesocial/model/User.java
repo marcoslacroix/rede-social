@@ -1,4 +1,4 @@
-package com.example.redesocial.entity;
+package com.example.redesocial.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -50,10 +50,6 @@ public class User {
     @Builder.Default
     private boolean activated = true;
 
-    @Column(name = "excluded")
-    @Builder.Default
-    private boolean excluded = false;
-
     @OneToMany(mappedBy = "user")
     private List<Work> works;
 
@@ -77,5 +73,8 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Phone> phones;
+
+    @OneToMany(mappedBy = "user")
+    private List<Photo> photos;
 
 }

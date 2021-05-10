@@ -1,6 +1,6 @@
 package com.example.redesocial.repository;
 
-import com.example.redesocial.entity.User;
+import com.example.redesocial.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
