@@ -5,6 +5,7 @@ import com.example.redesocial.dto.user.UserDto;
 import com.example.redesocial.dto.user.create.UserCreateDto;
 import com.example.redesocial.dto.work.WorkDto;
 import com.example.redesocial.dto.work.create.WorkCreateDto;
+import com.example.redesocial.dto.work.update.WorkUpdateDto;
 import com.example.redesocial.service.EmailService;
 import com.example.redesocial.service.UserService;
 import com.example.redesocial.service.WorkService;
@@ -75,5 +76,18 @@ public class UserController {
     @ApiOperation(value = "Create work", response = WorkDto.class)
     public ResponseEntity<WorkDto> createWork(@RequestBody @Valid WorkCreateDto workCreateDto) {
         return ResponseEntity.ok(workService.create(workCreateDto));
+    }
+
+    @PutMapping("/work/update")
+    @ApiOperation(value = "Update work", response = WorkDto.class)
+    public ResponseEntity<WorkDto> updateWork(@RequestBody @Valid WorkUpdateDto workUpdateDto) {
+        return ResponseEntity.ok(workService.update(workUpdateDto));
+    }
+
+    @DeleteMapping("/email/{workId}")
+    @ApiOperation(value = "Deletar work")
+    public ResponseEntity<Void> deleteWork(@RequestParam Long workId) {
+        workService.delete(workId);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -26,8 +26,8 @@ public class Email {
     private String email;
 
     @Builder.Default
-    @Column(name = "excluido")
-    private boolean excluido = false;
+    @Column(name = "excluded")
+    private boolean excluded = false;
 
     @Column(name = "user_id", nullable = false)
     private Long userId;

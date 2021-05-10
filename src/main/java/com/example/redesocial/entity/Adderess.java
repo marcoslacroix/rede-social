@@ -28,6 +28,10 @@ public class Adderess {
     @Column(name = "city", nullable = false)
     private String city;
 
+    @Column(name = "excluded")
+    @Builder.Default
+    private boolean excluded = false;
+
     @Column(name = "postal_code", nullable = false)
     private String postalCode;
 

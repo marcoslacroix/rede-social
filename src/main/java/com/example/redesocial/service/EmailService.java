@@ -29,12 +29,9 @@ public class EmailService {
         if (nonNull(userSearch) || nonNull(emailSearch)) {
             throw new EmailAlreadyFound(email);
         }
-
-        Email newEmail = EmailCreateMapper.INSTANCE.toEmail(userId, email);
-        emailRepository.save(newEmail);
-
-
-        return EmailMapper.INSTANCE.toDto(newEmail);
+        return EmailMapper.INSTANCE.toDto(
+                emailRepository.save(
+                        EmailCreateMapper.INSTANCE.toEmail(userId, email)));
     }
 
     @Transactional

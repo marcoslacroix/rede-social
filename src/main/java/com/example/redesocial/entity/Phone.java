@@ -40,6 +40,10 @@ public class Phone {
     @Column(name = "ddi_home_phone")
     private String ddiHomePhone;
 
+    @Column(name = "excluded")
+    @Builder.Default
+    private boolean excluded = false;
+
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
