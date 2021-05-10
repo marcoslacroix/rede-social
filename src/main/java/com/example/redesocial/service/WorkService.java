@@ -3,7 +3,7 @@ package com.example.redesocial.service;
 import com.example.redesocial.dto.work.WorkDto;
 import com.example.redesocial.dto.work.create.WorkCreateDto;
 import com.example.redesocial.dto.work.update.WorkUpdateDto;
-import com.example.redesocial.entity.Work;
+import com.example.redesocial.model.Work;
 import com.example.redesocial.mapper.work.WorkCreateMapper;
 import com.example.redesocial.mapper.work.WorkMapper;
 import com.example.redesocial.repository.WorkRepository;

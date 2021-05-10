@@ -1,4 +1,4 @@
-package com.example.redesocial.entity;
+package com.example.redesocial.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,31 +13,18 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Work {
+public class Collage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "uuid", nullable = false)
+    @Column(name = "uuid")
     private String uuid;
 
-    @Column(name = "company", nullable = false)
-    private String company;
-
-    @Column(name = "role")
-    private String role;
-
-    @Column(name = "city")
-    private String city;
-
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "active")
-    @Builder.Default
-    private boolean active = true;
+    @Column(name = "institution")
+    private String institution;
 
     @Column(name = "start")
     private LocalDate start;
@@ -45,9 +32,16 @@ public class Work {
     @Column(name = "end")
     private LocalDate end;
 
+    @Column(name = "formed")
+    @Builder.Default
+    private boolean formed = false;
+
     @Column(name = "excluded")
     @Builder.Default
     private boolean excluded = false;
+
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "user_id", nullable = false)
     private Long userId;

@@ -11,11 +11,13 @@ import com.example.redesocial.service.UserService;
 import com.example.redesocial.service.WorkService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import java.io.IOException;
 
 
 @RestController
@@ -52,8 +54,8 @@ public class UserController {
 
     @PutMapping("/updateEmail/{userId}")
     @ApiOperation(value = "Update email")
-    public ResponseEntity<Void> changeEmail(@RequestParam @NotBlank String newEmail,
-                                            @RequestParam @NotBlank Long userId) {
+    public ResponseEntity<Void> changeEmail(@PathVariable @NotBlank String newEmail,
+                                            @PathVariable @NotBlank Long userId) {
         userService.changeEmailPrincipal(newEmail, userId);
         return ResponseEntity.noContent().build();
     }
@@ -61,13 +63,13 @@ public class UserController {
 
     @PostMapping("/email/{userId}")
     @ApiOperation(value = "Create another email for user", response = EmailDto.class)
-    public ResponseEntity<EmailDto> create(@RequestParam Long userId, @RequestParam String email) {
+    public ResponseEntity<EmailDto> create(@PathVariable Long userId, @RequestParam String email) {
         return ResponseEntity.ok(emailService.create(userId, email));
     }
 
     @DeleteMapping("/email/{emailId}")
     @ApiOperation(value = "Delete a email")
-    public ResponseEntity<Void> deleteEmail(@RequestParam Long emailId) {
+    public ResponseEntity<Void> deleteEmail(@PathVariable Long emailId) {
         emailService.delete(emailId);
         return ResponseEntity.noContent().build();
     }
@@ -84,10 +86,28 @@ public class UserController {
         return ResponseEntity.ok(workService.update(workUpdateDto));
     }
 
-    @DeleteMapping("/email/{workId}")
+    @DeleteMapping("/work/{workId}")
     @ApiOperation(value = "Deletar work")
-    public ResponseEntity<Void> deleteWork(@RequestParam Long workId) {
+    public ResponseEntity<Void> deleteWork(@PathVariable Long workId) {
         workService.delete(workId);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/photo/{userId}")
+    @ApiOperation(value = "Upload photo")
+    public ResponseEntity<?> upload(@PathVariable Long userId,
+                                    @RequestParam(value = "file") MultipartFile multipartFile) throws IOException {
+        userService.uploadPhoto(userId, multipartFile);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(
+            value = "/image/{userId}",
+            produces = MediaType.IMAGE_JPEG_VALUE
+    )
+    @ApiOperation(value = "Show photo")
+    public ResponseEntity<byte[]> getPhoto(@PathVariable Long userId) throws IOException {
+        return ResponseEntity.ok(userService.getPhoto(userId));
+    }
+
 }

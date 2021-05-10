@@ -1,7 +1,7 @@
 package com.example.redesocial.mapper.user;
 
 import com.example.redesocial.dto.user.create.UserCreateDto;
-import com.example.redesocial.entity.User;
+import com.example.redesocial.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

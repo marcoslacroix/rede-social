@@ -1,4 +1,4 @@
-package com.example.redesocial.entity;
+package com.example.redesocial.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
