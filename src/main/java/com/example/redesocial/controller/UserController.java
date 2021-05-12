@@ -95,6 +95,7 @@ public class UserController {
 
     @PostMapping("/photo/{userId}")
     @ApiOperation(value = "Upload photo")
+    // todo criar atributo para ser foto de perfil
     public ResponseEntity<?> upload(@PathVariable Long userId,
                                     @RequestParam(value = "file") MultipartFile multipartFile) throws IOException {
         userService.uploadPhoto(userId, multipartFile);
@@ -102,12 +103,13 @@ public class UserController {
     }
 
     @GetMapping(
-            value = "/image/{userId}",
+            value = "/image/{photoId}",
             produces = MediaType.IMAGE_JPEG_VALUE
     )
-    @ApiOperation(value = "Show photo")
-    public ResponseEntity<byte[]> getPhoto(@PathVariable Long userId) throws IOException {
-        return ResponseEntity.ok(userService.getPhoto(userId));
+    @ApiOperation(value = "Get photo perfil")
+    // todo pegar a foto do perfil
+    public ResponseEntity <byte[]> getPhoto(@PathVariable Long photoId) throws IOException {
+        return ResponseEntity.ok(userService.getPhoto(photoId));
     }
 
 }

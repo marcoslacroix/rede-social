@@ -99,8 +99,8 @@ public class UserService {
         }
     }
 
-    public byte[] getPhoto(Long userId) {
-        Photo photo = photoRepository.findByUserId(userId).orElse(null);
+    public byte[] getPhoto(Long photoId) {
+        Photo photo = photoRepository.findById(photoId).orElse(null);
         if (isNull(photo)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "Photo not found.");
